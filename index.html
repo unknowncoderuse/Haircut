@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Barber Booking</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        form { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; }
+        input, select, button { width: 100%; padding: 10px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Book Your Barber Appointment</h1>
+    <form id="bookingForm">
+        <label>Name:</label>
+        <input type="text" id="name" required>
+
+        <label>Date:</label>
+        <input type="date" id="date" required>
+
+        <label>Time:</label>
+        <input type="time" id="time" required>
+
+        <label>Service:</label>
+        <select id="service" required>
+            <option value="Haircut">Haircut</option>
+            <option value="Shave">Shave</option>
+            <option value="Hair color">Hair Color</option>
+        </select>
+
+        <button type="submit">Book Appointment</button>
+    </form>
+
+    <h2>Your Appointments</h2>
+    <ul id="appointments"></ul>
+
+    <script>
+        document.getElementById("bookingForm").onsubmit = function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const date = document.getElementById("date").value;
+            const time = document.getElementById("time").value;
+            const service = document.getElementById("service").value;
+
+            const appointment = `${name} - ${service} on ${date} at ${time}`;
+            const listItem = document.createElement("li");
+            listItem.textContent = appointment;
+
+            document.getElementById("appointments").appendChild(listItem);
+
+            // Clear form
+            document.getElementById("bookingForm").reset();
+        };
+    </script>
+</body>
+</html>
